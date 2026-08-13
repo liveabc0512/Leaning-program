@@ -1,0 +1,234 @@
+<!DOCTYPE html><html class="dark" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Lumina Lexicon - Check-in</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary": "#ddb7ff",
+                        "on-error-container": "#ffdad6",
+                        "on-primary-fixed-variant": "#2f2ebe",
+                        "surface-tint": "#c0c1ff",
+                        "surface-container-low": "#131b2e",
+                        "secondary-fixed": "#62fae3",
+                        "on-primary-container": "#0d0096",
+                        "on-background": "#dae2fd",
+                        "secondary-fixed-dim": "#3cddc7",
+                        "on-tertiary-container": "#400071",
+                        "surface-container-highest": "#2d3449",
+                        "on-secondary-fixed": "#00201c",
+                        "surface-bright": "#31394d",
+                        "surface-container": "#171f33",
+                        "error-container": "#93000a",
+                        "primary-fixed-dim": "#c0c1ff",
+                        "surface-container-high": "#222a3d",
+                        "secondary-container": "#03c6b2",
+                        "primary-container": "#8083ff",
+                        "on-primary-fixed": "#07006c",
+                        "surface": "#0b1326",
+                        "primary-fixed": "#e1e0ff",
+                        "on-surface": "#dae2fd",
+                        "outline-variant": "#464554",
+                        "tertiary-fixed": "#f0dbff",
+                        "on-secondary-container": "#004d44",
+                        "surface-variant": "#2d3449",
+                        "inverse-on-surface": "#283044",
+                        "inverse-surface": "#dae2fd",
+                        "on-secondary": "#003731",
+                        "inverse-primary": "#494bd6",
+                        "on-secondary-fixed-variant": "#005047",
+                        "primary": "#c0c1ff",
+                        "error": "#ffb4ab",
+                        "on-error": "#690005",
+                        "on-tertiary": "#490080",
+                        "on-primary": "#1000a9",
+                        "surface-container-lowest": "#060e20",
+                        "on-surface-variant": "#c7c4d7",
+                        "on-tertiary-fixed-variant": "#6900b3",
+                        "background": "#0b1326",
+                        "on-tertiary-fixed": "#2c0051",
+                        "tertiary-container": "#b76dff",
+                        "tertiary-fixed-dim": "#ddb7ff",
+                        "secondary": "#44e2cd",
+                        "outline": "#908fa0",
+                        "surface-dim": "#0b1326"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "auto",
+                        "gutter": "16px",
+                        "base": "4px",
+                        "xs": "8px",
+                        "sm": "16px",
+                        "margin-mobile": "20px",
+                        "lg": "40px",
+                        "xl": "64px",
+                        "md": "24px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "title-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "title-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "34px", "fontWeight": "700" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #0b1326;
+            min-height: max(884px, 100dvh);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        .spring-bounce:active {
+            transform: scale(0.9);
+            transition-duration: 300ms;
+        }
+        
+        /* Mobile safe area padding for bottom nav */
+        .pb-safe {
+            padding-bottom: env(safe-area-inset-bottom, 16px);
+        }
+        
+        .glass-card {
+            background: rgba(45, 52, 73, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(192, 193, 255, 0.15);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center p-margin-mobile text-on-surface pb-24 bg-background">
+<!-- Top Nav Component (Mobile) -->
+<header class="md:hidden fixed top-0 w-full z-50 backdrop-blur-xl border-b border-white/15 shadow-[0_0_20px_0_rgba(192,193,255,0.1)] flex justify-between items-center px-margin-mobile h-16 bg-surface/10 dark:bg-surface/10">
+<span class="material-symbols-outlined text-primary dark:text-primary hover:opacity-80 transition-opacity active:scale-95 duration-200 cursor-pointer">menu</span>
+<h1 class="font-title-md text-title-md bg-clip-text text-transparent bg-gradient-to-r from-primary via-tertiary to-secondary">Lumina Lexicon</h1>
+<span class="material-symbols-outlined text-primary dark:text-primary hover:opacity-80 transition-opacity active:scale-95 duration-200 cursor-pointer">local_fire_department</span>
+</header>
+<!-- TopAppBar (Hidden on Mobile, Visible on md+) -->
+<header class="hidden md:flex fixed top-0 w-full z-50 justify-between items-center px-margin-mobile h-16 backdrop-blur-xl border-b border-white/15 shadow-[0_0_20px_0_rgba(192,193,255,0.1)] bg-surface/10">
+<div class="flex items-center gap-4">
+<button class="text-on-surface hover:bg-surface-container-high transition-colors p-2 rounded-full active:scale-95 duration-200">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<h1 class="font-title-md text-title-md font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary via-tertiary to-secondary">Lumina Lexicon</h1>
+</div>
+<nav class="flex gap-8">
+<a class="text-on-surface-variant font-label-sm text-label-sm hover:text-primary transition-colors" href="#">Home</a>
+<a class="text-on-surface-variant font-label-sm text-label-sm hover:text-primary transition-colors" href="#">Learn</a>
+<a class="text-on-surface-variant font-label-sm text-label-sm hover:text-primary transition-colors" href="#">Games</a>
+<a class="text-primary font-label-sm text-label-sm hover:text-primary transition-colors" href="#">Community</a>
+</nav>
+<button class="text-primary hover:opacity-80 transition-colors p-2 rounded-full active:scale-95 duration-200">
+<span class="material-symbols-outlined">local_fire_department</span>
+</button>
+</header>
+<!-- Main Content Area -->
+<main class="w-full max-w-2xl mx-auto flex flex-col mt-20 gap-sm md:gap-md">
+<!-- Header Section -->
+<div class="text-center md:text-left pt-4 mb-4">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary mb-2">My Daily Post</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">分享快樂，學習快樂！</p>
+</div>
+<!-- Creation Form Card -->
+<div class="glass-card rounded-xl p-md flex flex-col gap-sm">
+<!-- Photo Upload Area -->
+<button class="w-full h-48 border-2 border-dashed border-outline-variant bg-surface-container/50 rounded-lg flex flex-col items-center justify-center text-outline hover:bg-surface-container-high hover:border-primary/50 transition-colors group">
+<span class="material-symbols-outlined text-4xl mb-2 group-hover:text-primary transition-colors drop-shadow-[0_0_15px_rgba(192,193,255,0.4)]">add_a_photo</span>
+<span class="font-body-md text-body-md group-hover:text-primary transition-colors">Capture Moment</span>
+</button>
+<!-- Text Input -->
+<div class="relative">
+<textarea class="w-full bg-surface-container/50 border border-outline-variant/50 focus:border-primary focus:ring-1 focus:ring-primary rounded-lg p-4 font-body-lg text-body-lg text-on-surface placeholder-on-surface-variant resize-none h-32 transition-all shadow-inner" placeholder="Write a sentence using today's words..."></textarea>
+</div>
+<!-- Tags -->
+<div class="flex gap-2 flex-wrap">
+<span class="bg-secondary-container/20 border border-secondary text-secondary px-3 py-1 rounded-full font-label-sm text-label-sm flex items-center gap-1 shadow-[0_0_10px_rgba(68,226,205,0.2)]">
+                    #persistence
+                </span>
+<span class="bg-surface-container border border-outline-variant text-on-surface-variant px-3 py-1 rounded-full font-label-sm text-label-sm flex items-center gap-1 cursor-pointer hover:bg-surface-container-high hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-[16px]">add</span> Add Tag
+                </span>
+</div>
+</div>
+<!-- Preview Section -->
+<div class="flex flex-col gap-xs mt-4">
+<h3 class="font-title-md text-title-md text-on-surface">Preview</h3>
+<div class="glass-card rounded-xl overflow-hidden">
+<!-- User Info Bar -->
+<div class="flex items-center gap-3 p-4 border-b border-white/10">
+<div class="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-tertiary text-on-primary flex items-center justify-center font-bold shadow-[0_0_15px_rgba(192,193,255,0.4)]">
+                        U
+                    </div>
+<div>
+<div class="font-title-md text-title-md text-on-surface text-sm">You</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant text-xs">Just now</div>
+</div>
+</div>
+<!-- Image Placeholder -->
+<div class="bg-cover bg-center w-full h-64 bg-surface-container-highest" data-alt="A softly lit, minimalist desk setup featuring a notebook with handwritten Traditional Chinese characters. A sleek pen lies next to it, and a small potted succulent adds a touch of green. The overall aesthetic is calm, studious, and modern Zen-SaaS, rendered in bright, clear lighting with high contrast between the white paper and dark ink." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAcbsUIPWh4se_jjXGTmaVgi3ZZtwk9SghtN1WCYHuwYnMrN3r6Btj7VPwgqZ2D5UCWNK3f9wtYQ2nUSPS0_g8bB-QGfOZWMFORIuzpCt5VzkA7Ql8zs0_ctvFnhPetpVw7dQCZC6CRh1J9veRiGskay8cW3BfU470KZza2uoa_Gh4X9GgjVvmHAC1ZtobEOUtCdmUCn63V-w9qR2N61zfb4SnVBzFvvD4tusu6XPxkvLYya8giazdV')"></div>
+<!-- Content Preview -->
+<div class="p-4 flex flex-col gap-2">
+<p class="font-body-md text-body-md text-on-surface italic">"Your sentence will appear here..."</p>
+<div class="flex gap-2 mt-2">
+<span class="text-secondary font-label-sm text-label-sm drop-shadow-[0_0_8px_rgba(68,226,205,0.5)]">#persistence</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Action Button -->
+<button class="w-full py-4 bg-gradient-to-r from-primary to-inverse-primary text-surface-container-lowest font-title-md text-title-md rounded-full hover:shadow-[0_0_20px_rgba(192,193,255,0.5)] active:scale-95 transition-all shadow-[0_0_15px_rgba(192,193,255,0.3)] flex items-center justify-center gap-2 mt-8 mb-8 border border-white/20">
+<span class="material-symbols-outlined">send</span>
+            Post &amp; Complete Daily Mission
+        </button>
+</main>
+<!-- Bottom Nav Component (Visible on Mobile, md:hidden) -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 backdrop-blur-xl border-t border-white/15 shadow-[0_-4px_20px_0_rgba(192,193,255,0.1)] flex justify-around items-center h-20 pb-safe px-4 bg-surface/10 dark:bg-surface/10">
+<div class="flex flex-col items-center justify-center text-on-surface-variant/70 cursor-pointer hover:text-primary transition-colors active:scale-90 duration-300 spring-bounce">
+<span class="material-symbols-outlined font-variation-settings-'FILL'-0">home</span>
+<span class="font-label-sm text-label-sm mt-1">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant/70 cursor-pointer hover:text-primary transition-colors active:scale-90 duration-300 spring-bounce">
+<span class="material-symbols-outlined">school</span>
+<span class="font-label-sm text-label-sm mt-1">Learn</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant/70 cursor-pointer hover:text-primary transition-colors active:scale-90 duration-300 spring-bounce">
+<span class="material-symbols-outlined">sports_esports</span>
+<span class="font-label-sm text-label-sm mt-1">Games</span>
+</div>
+<div class="flex flex-col items-center justify-center text-primary drop-shadow-[0_0_8px_rgba(192,193,255,0.5)] cursor-pointer transition-colors active:scale-90 duration-300 spring-bounce">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">group</span>
+<span class="font-label-sm text-label-sm mt-1">Community</span>
+</div>
+</nav>
+
+
+</body></html>

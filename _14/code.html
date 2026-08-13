@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Electric Modern Performance Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-primary-fixed-variant": "#2f2ebe",
+            "inverse-on-surface": "#283044",
+            "surface-container": "#171f33",
+            "tertiary-container": "#b76dff",
+            "on-tertiary-fixed-variant": "#6900b3",
+            "surface-container-high": "#222a3d",
+            "on-surface": "#dae2fd",
+            "outline": "#908fa0",
+            "inverse-primary": "#494bd6",
+            "on-tertiary-container": "#400071",
+            "secondary-container": "#03c6b2",
+            "secondary": "#44e2cd",
+            "outline-variant": "#464554",
+            "on-surface-variant": "#c7c4d7",
+            "on-tertiary-fixed": "#2c0051",
+            "secondary-fixed": "#62fae3",
+            "on-secondary-fixed-variant": "#005047",
+            "background": "#0b1326",
+            "error": "#ffb4ab",
+            "surface-dim": "#0b1326",
+            "tertiary-fixed": "#f0dbff",
+            "primary-container": "#8083ff",
+            "primary-fixed": "#e1e0ff",
+            "inverse-surface": "#dae2fd",
+            "on-secondary-container": "#004d44",
+            "surface-container-lowest": "#060e20",
+            "surface-bright": "#31394d",
+            "on-secondary": "#003731",
+            "secondary-fixed-dim": "#3cddc7",
+            "on-background": "#dae2fd",
+            "on-primary-fixed": "#07006c",
+            "primary": "#c0c1ff",
+            "on-tertiary": "#490080",
+            "primary-fixed-dim": "#c0c1ff",
+            "surface": "#0b1326",
+            "on-error-container": "#ffdad6",
+            "surface-container-low": "#131b2e",
+            "surface-variant": "#2d3449",
+            "tertiary-fixed-dim": "#ddb7ff",
+            "tertiary": "#ddb7ff",
+            "on-primary-container": "#0d0096",
+            "on-secondary-fixed": "#00201c",
+            "on-primary": "#1000a9",
+            "surface-tint": "#c0c1ff",
+            "error-container": "#93000a",
+            "surface-container-highest": "#2d3449",
+            "on-error": "#690005"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "fontFamily": {
+            "body-md": ["Inter"],
+            "headline-lg": ["Inter"],
+            "title-md": ["Inter"],
+            "display-lg": ["Inter"],
+            "headline-lg-mobile": ["Inter"],
+            "body-lg": ["Inter"],
+            "label-sm": ["Inter"]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    body {
+      background-color: #0b1326;
+      font-family: 'Inter', sans-serif;
+      color: #dae2fd;
+    }
+    .glass-card {
+      background: rgba(23, 31, 51, 0.7);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(192, 193, 255, 0.1);
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    }
+    .electric-glow {
+      box-shadow: 0 0 15px rgba(68, 226, 205, 0.2);
+    }
+    .gradient-text {
+      background: linear-gradient(135deg, #c0c1ff 0%, #44e2cd 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .gradient-border-glow {
+      position: relative;
+    }
+    .gradient-border-glow::after {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      background: linear-gradient(135deg, rgba(192, 193, 255, 0.4), rgba(68, 226, 205, 0.4));
+      border-radius: inherit;
+      z-index: -1;
+      pointer-events: none;
+    }
+    .status-pulse {
+      animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #0b1326;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #464554;
+      border-radius: 10px;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface custom-scrollbar">
+<!-- Header -->
+<header class="sticky top-0 z-50 flex items-center justify-between px-6 py-4 bg-background/80 backdrop-blur-md border-b border-outline-variant">
+<div class="flex items-center gap-3">
+<div class="p-2 rounded-lg bg-surface-container-high border border-primary/20">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">bolt</span>
+</div>
+<div>
+<h2 class="text-title-md font-bold text-on-surface leading-tight">Performance</h2>
+<p class="text-label-sm text-on-surface-variant uppercase tracking-widest">Network Cluster A-12</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="flex items-center justify-center size-10 rounded-full bg-surface-container border border-outline-variant hover:border-primary transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">search</span>
+</button>
+<button class="flex items-center justify-center size-10 rounded-full bg-surface-container border border-outline-variant hover:border-primary transition-colors relative">
+<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+<span class="absolute top-2 right-2 size-2 bg-secondary rounded-full status-pulse"></span>
+</button>
+<div class="size-10 rounded-full border-2 border-primary overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional close-up portrait of a tech-savvy female systems engineer with sleek glasses and a focused expression. The background is a dark, high-tech control center with soft blue and cyan ambient lighting. The overall aesthetic is clean, modern, and high-contrast, fitting an electric cyber-noir theme with premium textures and cinematic depth." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGZ1AwvrRpOUUp9Vl9fDYkVZNyVD5eteY8uk1C5C7isDmyt9_FoVfX8yU7WELE53F_JkvYeTDx7Q84nru7o32Ft576e1xCwIoPZ7XHrnheUCOVxqhbpJ8cvCXGBUba4VRkt4xKTan2CufLSncRLrhEsXw3vC1FSLHSuObiQfexT5fzGiovl4Fkslk3Zg-JR0jwi2VPhoNq2ImVR6ecOwFvtoJVEArTxUAr_mG8jHC-KgeXiH160Sof"/>
+</div>
+</div>
+</header>
+<main class="max-w-7xl mx-auto px-6 py-8 space-y-8">
+<!-- Hero Section with Background Animation -->
+<section class="relative overflow-hidden rounded-3xl p-8 min-h-[240px] flex flex-col justify-end glass-card border-primary/20">
+<webgl-shader class="absolute inset-0 w-full h-full opacity-40" src="{{DATA:ANIMATION:ANIMATION_1}}"></webgl-shader>
+<div class="relative z-10">
+<div class="flex items-center gap-2 mb-2">
+<span class="size-3 bg-secondary rounded-full status-pulse"></span>
+<span class="text-label-sm font-bold text-secondary uppercase tracking-widest">Live Optimization Active</span>
+</div>
+<h1 class="text-display-lg font-extrabold tracking-tight mb-4">
+<span class="gradient-text">System Status</span>
+</h1>
+<div class="flex gap-4">
+<button class="px-6 py-2.5 bg-primary text-on-primary font-bold rounded-xl flex items-center gap-2 hover:scale-105 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">analytics</span>
+            View Logs
+          </button>
+<button class="px-6 py-2.5 bg-surface-container text-primary font-bold rounded-xl border border-primary/30 flex items-center gap-2 hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined">refresh</span>
+            Refresh
+          </button>
+</div>
+</div>
+</section>
+<!-- Key Metrics Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Metric 1 -->
+<div class="glass-card p-6 rounded-2xl gradient-border-glow">
+<div class="flex justify-between items-start mb-4">
+<div class="p-3 rounded-xl bg-primary/10 border border-primary/20">
+<span class="material-symbols-outlined text-primary">speed</span>
+</div>
+<span class="text-secondary text-sm font-bold bg-secondary/10 px-2 py-1 rounded">+0.02%</span>
+</div>
+<p class="text-on-surface-variant text-sm font-medium mb-1">Uptime</p>
+<h3 class="text-headline-lg-mobile font-bold text-on-surface">99.98%</h3>
+<div class="mt-4 w-full h-1 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-primary to-secondary" style="width: 99%"></div>
+</div>
+</div>
+<!-- Metric 2 -->
+<div class="glass-card p-6 rounded-2xl">
+<div class="flex justify-between items-start mb-4">
+<div class="p-3 rounded-xl bg-secondary/10 border border-secondary/20">
+<span class="material-symbols-outlined text-secondary">timer</span>
+</div>
+<span class="text-error text-sm font-bold bg-error/10 px-2 py-1 rounded">-4%</span>
+</div>
+<p class="text-on-surface-variant text-sm font-medium mb-1">Latency</p>
+<h3 class="text-headline-lg-mobile font-bold text-on-surface">24ms</h3>
+<div class="mt-4 w-full h-1 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-secondary" style="width: 15%"></div>
+</div>
+</div>
+<!-- Metric 3 -->
+<div class="glass-card p-6 rounded-2xl">
+<div class="flex justify-between items-start mb-4">
+<div class="p-3 rounded-xl bg-tertiary-container/10 border border-tertiary-container/20">
+<span class="material-symbols-outlined text-tertiary-container">memory</span>
+</div>
+<span class="text-secondary text-sm font-bold bg-secondary/10 px-2 py-1 rounded">+1.2%</span>
+</div>
+<p class="text-on-surface-variant text-sm font-medium mb-1">Node Load</p>
+<h3 class="text-headline-lg-mobile font-bold text-on-surface">42.5%</h3>
+<div class="mt-4 w-full h-1 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-tertiary-container" style="width: 42%"></div>
+</div>
+</div>
+<!-- Metric 4 -->
+<div class="glass-card p-6 rounded-2xl">
+<div class="flex justify-between items-start mb-4">
+<div class="p-3 rounded-xl bg-error/10 border border-error/20">
+<span class="material-symbols-outlined text-error">warning</span>
+</div>
+<span class="text-on-surface-variant text-sm font-bold">Stable</span>
+</div>
+<p class="text-on-surface-variant text-sm font-medium mb-1">Active Alerts</p>
+<h3 class="text-headline-lg-mobile font-bold text-on-surface">0</h3>
+<div class="mt-4 w-full h-1 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-error" style="width: 0%"></div>
+</div>
+</div>
+</div>
+<!-- Main Content Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Resource Usage Chart Area -->
+<div class="lg:col-span-2 glass-card rounded-2xl p-6">
+<div class="flex items-center justify-between mb-8">
+<h2 class="text-title-md font-bold">Resource Usage</h2>
+<div class="flex bg-surface-container p-1 rounded-lg">
+<button class="px-3 py-1 text-label-sm font-bold rounded-md bg-surface-container-high text-primary">Day</button>
+<button class="px-3 py-1 text-label-sm font-bold rounded-md text-on-surface-variant hover:text-on-surface">Week</button>
+<button class="px-3 py-1 text-label-sm font-bold rounded-md text-on-surface-variant hover:text-on-surface">Month</button>
+</div>
+</div>
+<div class="relative h-[300px] w-full bg-surface-container-lowest/50 rounded-xl overflow-hidden flex items-end p-4 border border-outline-variant/30">
+<!-- Placeholder for animated data chart -->
+<animated-svg class="absolute inset-0 w-full h-full" src="{{DATA:ANIMATION:ANIMATION_2}}"></animated-svg>
+<!-- Chart Axis Labels -->
+<div class="absolute left-4 top-4 space-y-12">
+<span class="block text-[10px] text-on-surface-variant font-bold uppercase">100%</span>
+<span class="block text-[10px] text-on-surface-variant font-bold uppercase">50%</span>
+<span class="block text-[10px] text-on-surface-variant font-bold uppercase">0%</span>
+</div>
+</div>
+<div class="grid grid-cols-3 gap-4 mt-6">
+<div class="flex items-center gap-2">
+<span class="size-2 rounded-full bg-primary"></span>
+<span class="text-xs text-on-surface-variant">CPU Frequency</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="size-2 rounded-full bg-secondary"></span>
+<span class="text-xs text-on-surface-variant">Memory Usage</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="size-2 rounded-full bg-tertiary"></span>
+<span class="text-xs text-on-surface-variant">Disc I/O</span>
+</div>
+</div>
+</div>
+<!-- Network Nodes Status -->
+<div class="glass-card rounded-2xl p-6 flex flex-col">
+<h2 class="text-title-md font-bold mb-6">Active Nodes</h2>
+<div class="space-y-4 flex-1">
+<!-- Node 1 -->
+<div class="flex items-center gap-4 p-3 rounded-xl bg-surface-container-low border border-outline-variant/20 hover:border-primary/50 transition-colors group">
+<div class="relative">
+<div class="size-12 rounded-lg bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-primary group-hover:scale-110 transition-transform">dns</span>
+</div>
+<div class="absolute -bottom-1 -right-1 size-3 bg-secondary rounded-full border-2 border-background"></div>
+</div>
+<div class="flex-1">
+<p class="text-sm font-bold text-on-surface">San Francisco [SFO-1]</p>
+<p class="text-xs text-on-surface-variant">Traffic: 1.2 GB/s</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
+</div>
+<!-- Node 2 -->
+<div class="flex items-center gap-4 p-3 rounded-xl bg-surface-container-low border border-outline-variant/20 hover:border-primary/50 transition-colors group">
+<div class="relative">
+<div class="size-12 rounded-lg bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-primary group-hover:scale-110 transition-transform">dns</span>
+</div>
+<div class="absolute -bottom-1 -right-1 size-3 bg-secondary rounded-full border-2 border-background"></div>
+</div>
+<div class="flex-1">
+<p class="text-sm font-bold text-on-surface">London [LHR-4]</p>
+<p class="text-xs text-on-surface-variant">Traffic: 856 MB/s</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
+</div>
+<!-- Node 3 -->
+<div class="flex items-center gap-4 p-3 rounded-xl bg-surface-container-low border border-outline-variant/20 hover:border-primary/50 transition-colors group">
+<div class="relative">
+<div class="size-12 rounded-lg bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-primary group-hover:scale-110 transition-transform">dns</span>
+</div>
+<div class="absolute -bottom-1 -right-1 size-3 bg-secondary rounded-full border-2 border-background"></div>
+</div>
+<div class="flex-1">
+<p class="text-sm font-bold text-on-surface">Tokyo [NRT-2]</p>
+<p class="text-xs text-on-surface-variant">Traffic: 2.1 GB/s</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
+</div>
+</div>
+<button class="mt-6 w-full py-3 bg-surface-container-high text-on-surface font-bold rounded-xl border border-outline-variant hover:bg-surface-container transition-colors">
+          Manage All Nodes
+        </button>
+</div>
+</div>
+<!-- System Location View -->
+<section class="glass-card rounded-2xl p-6 relative overflow-hidden min-h-[350px]">
+<div class="relative z-10 flex flex-col h-full pointer-events-none">
+<h2 class="text-title-md font-bold mb-2">Global Coverage</h2>
+<p class="text-body-md text-on-surface-variant mb-4">Edge server distribution across major hubs</p>
+<div class="flex gap-2">
+<span class="px-3 py-1 bg-primary/20 text-primary rounded-full text-xs font-bold border border-primary/30">12 Active Regions</span>
+<span class="px-3 py-1 bg-secondary/20 text-secondary rounded-full text-xs font-bold border border-secondary/30">Zero Outages</span>
+</div>
+</div>
+<!-- Map Integration -->
+<div class="absolute inset-0 z-0">
+<div class="w-full h-full bg-cover bg-center opacity-40" data-alt="A stylized, high-tech dark mode digital world map with neon glowing blue and teal connections between major cities. The aesthetic is clean and futuristic, featuring a dark slate-blue base with vibrant cyan highlights, matching an electric modern design system with subtle grid lines and data visualization elements." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA193DkJGdtar0Zt0PJ1SjwByvYNDfYdIc8VLFdD6zGNfUUx3egoRooiZxx2Jt3CvAO4tX46gc_jt8AiyznAbulygYAjdovc_rNdurSEP9rP4a0kyusBFm7BXIRD9sTxu4YGUvjujn3k1vH3fxFiola5NUWu8TiGjRtaLho8Z7l_TrTUyCh04L0a1s-FMRh_bwTU1ElLFZyhIUZxQtI3aS7aL9_pqXrXXjxab1OGbQarmGcdbaxXZ3U')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/50"></div>
+</div>
+</section>
+</main>
+<!-- Navigation Bar (Shared Component Style but adapted for Dark Mode Context) -->
+<footer class="fixed bottom-0 left-0 right-0 z-50 bg-surface-container-lowest/80 backdrop-blur-xl border-t border-outline-variant px-6 pb-6 pt-3 flex justify-around max-w-lg mx-auto rounded-t-[32px] shadow-2xl lg:max-w-xl">
+<a class="flex flex-col items-center gap-1 group" href="#">
+<div class="p-2 rounded-xl text-on-surface-variant group-hover:bg-primary/10 group-hover:text-primary transition-all">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+</div>
+<p class="text-[10px] font-bold uppercase tracking-tighter text-on-surface-variant group-hover:text-primary">Dashboard</p>
+</a>
+<a class="flex flex-col items-center gap-1 group" href="#">
+<div class="p-2 rounded-xl bg-primary/10 text-primary shadow-[0_0_15px_rgba(192,193,255,0.3)]">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">insights</span>
+</div>
+<p class="text-[10px] font-bold uppercase tracking-tighter text-primary">Stats</p>
+</a>
+<a class="flex flex-col items-center gap-1 group" href="#">
+<div class="p-2 rounded-xl text-on-surface-variant group-hover:bg-primary/10 group-hover:text-primary transition-all">
+<span class="material-symbols-outlined">hub</span>
+</div>
+<p class="text-[10px] font-bold uppercase tracking-tighter text-on-surface-variant group-hover:text-primary">Nodes</p>
+</a>
+<a class="flex flex-col items-center gap-1 group" href="#">
+<div class="p-2 rounded-xl text-on-surface-variant group-hover:bg-primary/10 group-hover:text-primary transition-all relative">
+<span class="material-symbols-outlined">notifications_active</span>
+<span class="absolute top-1.5 right-1.5 size-1.5 bg-secondary rounded-full"></span>
+</div>
+<p class="text-[10px] font-bold uppercase tracking-tighter text-on-surface-variant group-hover:text-primary">Alerts</p>
+</a>
+</footer>
+<script>
+    // Micro-interactions and subtle effects
+    document.querySelectorAll('.glass-card').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+      });
+    });
+  </script>
+</body></html>

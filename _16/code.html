@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Word Crush</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "on-secondary-container": "#004d44",
+                "primary-fixed": "#e1e0ff",
+                "primary-container": "#8083ff",
+                "primary": "#c0c1ff",
+                "tertiary-fixed-dim": "#ddb7ff",
+                "on-primary-fixed": "#07006c",
+                "background": "#0b1326",
+                "on-primary": "#1000a9",
+                "on-error-container": "#ffdad6",
+                "on-secondary-fixed-variant": "#005047",
+                "on-secondary-fixed": "#00201c",
+                "secondary-fixed": "#62fae3",
+                "surface-container-high": "#222a3d",
+                "surface-container-lowest": "#060e20",
+                "on-primary-container": "#0d0096",
+                "surface-dim": "#0b1326",
+                "on-secondary": "#003731",
+                "on-surface-variant": "#c7c4d7",
+                "on-primary-fixed-variant": "#2f2ebe",
+                "outline-variant": "#464554",
+                "surface-tint": "#c0c1ff",
+                "inverse-primary": "#494bd6",
+                "on-tertiary-container": "#400071",
+                "surface-container-highest": "#2d3449",
+                "on-surface": "#dae2fd",
+                "on-tertiary": "#490080",
+                "secondary-fixed-dim": "#3cddc7",
+                "on-tertiary-fixed": "#2c0051",
+                "secondary": "#44e2cd",
+                "on-background": "#dae2fd",
+                "outline": "#908fa0",
+                "on-tertiary-fixed-variant": "#6900b3",
+                "tertiary-container": "#b76dff",
+                "primary-fixed-dim": "#c0c1ff",
+                "on-error": "#690005",
+                "inverse-on-surface": "#283044",
+                "surface-variant": "#2d3449",
+                "secondary-container": "#03c6b2",
+                "surface-container": "#171f33",
+                "tertiary-fixed": "#f0dbff",
+                "surface": "#0b1326",
+                "tertiary": "#ddb7ff",
+                "error-container": "#93000a",
+                "surface-container-low": "#131b2e",
+                "inverse-surface": "#dae2fd",
+                "error": "#ffb4ab",
+                "surface-bright": "#31394d"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+        },
+        "spacing": {
+                "sm": "16px",
+                "margin-desktop": "auto",
+                "lg": "40px",
+                "xs": "8px",
+                "gutter": "16px",
+                "margin-mobile": "20px",
+                "xl": "64px",
+                "base": "4px",
+                "md": "24px"
+        },
+        "fontFamily": {
+                "title-md": [
+                        "Inter"
+                ],
+                "headline-lg-mobile": [
+                        "Inter"
+                ],
+                "label-sm": [
+                        "Inter"
+                ],
+                "display-lg": [
+                        "Inter"
+                ],
+                "headline-lg": [
+                        "Inter"
+                ],
+                "body-md": [
+                        "Inter"
+                ],
+                "body-lg": [
+                        "Inter"
+                ]
+        },
+        "fontSize": {
+                "title-md": [
+                        "20px",
+                        {
+                                "lineHeight": "28px",
+                                "fontWeight": "600"
+                        }
+                ],
+                "headline-lg-mobile": [
+                        "28px",
+                        {
+                                "lineHeight": "34px",
+                                "fontWeight": "700"
+                        }
+                ],
+                "label-sm": [
+                        "12px",
+                        {
+                                "lineHeight": "16px",
+                                "letterSpacing": "0.05em",
+                                "fontWeight": "600"
+                        }
+                ],
+                "display-lg": [
+                        "48px",
+                        {
+                                "lineHeight": "56px",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "800"
+                        }
+                ],
+                "headline-lg": [
+                        "32px",
+                        {
+                                "lineHeight": "40px",
+                                "letterSpacing": "-0.01em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "body-md": [
+                        "16px",
+                        {
+                                "lineHeight": "24px",
+                                "fontWeight": "400"
+                        }
+                ],
+                "body-lg": [
+                        "18px",
+                        {
+                                "lineHeight": "28px",
+                                "fontWeight": "400"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+<style>
+  .glass-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+  }
+  .neon-glow {
+    box-shadow: 0 0 20px rgba(73, 75, 214, 0.2);
+  }
+  .neon-glow-active {
+    box-shadow: 0 0 20px rgba(68, 226, 205, 0.4);
+    border-color: rgba(68, 226, 205, 0.8);
+  }
+  .progress-gradient {
+    background: linear-gradient(90deg, #c0c1ff, #44e2cd);
+  }
+</style>
+</head>
+<body class="bg-background text-on-surface min-h-screen flex flex-col font-body-md overflow-x-hidden pt-16 pb-20 md:pb-0">
+<!-- TopAppBar (Hidden Navigation Shell due to task focus, keeping header structure for game info) -->
+<header class="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-white/15 shadow-[0_0_20px_rgba(73,75,214,0.2)] flex justify-between items-center px-margin-mobile h-16 md:hidden">
+<div class="flex items-center gap-xs">
+<button class="p-2 rounded-full hover:opacity-80 transition-opacity active:scale-95 text-primary">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<div class="font-display-lg text-display-lg bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary absolute left-1/2 -translate-x-1/2 text-2xl">
+      Level 4
+    </div>
+<div class="flex items-center">
+<span class="material-symbols-outlined text-primary">pause</span>
+</div>
+</header>
+<header class="hidden md:flex fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-white/15 shadow-[0_0_20px_rgba(73,75,214,0.2)] justify-between items-center px-margin-desktop max-w-7xl mx-auto h-16">
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full hover:opacity-80 transition-opacity active:scale-95 text-primary flex items-center">
+<span class="material-symbols-outlined mr-2">arrow_back</span> Back
+        </button>
+</div>
+<div class="font-display-lg text-display-lg bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
+          Lumina Lexicon
+      </div>
+<div class="flex items-center gap-4">
+<div class="glass-card px-4 py-1 rounded-full flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-sm">stars</span>
+<span class="font-title-md text-title-md text-secondary">2,450</span>
+</div>
+</div>
+</header>
+<!-- Main Game Canvas -->
+<main class="flex-grow flex flex-col items-center justify-center p-margin-mobile md:p-lg max-w-3xl mx-auto w-full gap-md mt-4 md:mt-16">
+<!-- Game HUD -->
+<div class="w-full flex flex-col gap-sm">
+<div class="flex justify-between items-end">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Score</span>
+<span class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-secondary">1,250</span>
+</div>
+<div class="flex flex-col items-end">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Time</span>
+<span class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-error font-mono">01:30</span>
+</div>
+</div>
+<!-- Progress Bar -->
+<div class="w-full h-3 bg-surface-container-highest rounded-full overflow-hidden relative">
+<div class="absolute top-0 left-0 h-full progress-gradient rounded-full w-3/4 transition-all duration-500 ease-out"></div>
+</div>
+</div>
+<!-- Puzzle Grid -->
+<div class="w-full grid grid-cols-4 gap-xs md:gap-sm mt-md aspect-square md:aspect-video max-h-[600px]">
+<!-- Block 1: English -->
+<button class="glass-card rounded-lg flex items-center justify-center p-2 neon-glow hover:opacity-80 transition-all duration-200 active:scale-95">
+<span class="font-title-md text-title-md text-center break-words text-on-surface">Persistence</span>
+</button>
+<!-- Block 2: Chinese (Selected state) -->
+<button class="glass-card rounded-lg flex items-center justify-center p-2 neon-glow-active bg-secondary-container/10 transition-all duration-200 active:scale-95 transform scale-105">
+<span class="font-title-md text-title-md text-center text-secondary">堅持不懈</span>
+</button>
+<!-- Block 3 -->
+<button class="glass-card rounded-lg flex items-center justify-center p-2 neon-glow hover:opacity-80 transition-all duration-200 active:scale-95">
+<span class="font-title-md text-title-md text-center text-on-surface">Ambition</span>
+</button>
+<!-- Block 4 -->
+<button class="glass-card rounded-lg flex items-center justify-center p-2 neon-glow hover:opacity-80 transition-all duration-200 active:scale-95">
+<span class="font-title-md text-title-md text-center text-on-surface">Resilience</span>
+</button>
+<!-- Block 5 -->
+<button class="glass-card rounded-lg flex items-center justify-center p-2 neon-glow hover:opacity-80 transition-all duration-200 active:scale-95">
+<span class="font-title-md text-title-md text-center text-on-surface">抱負</span>
+</button>
+<!-- Block 6: English (Selected state) -->
+<button class="glass-card rounded-lg flex items-center justify-center p-2 neon-glow-active bg-secondary-container/10 transition-all duration-200 active:scale-95 transform scale-105">
+<span class="font-title-md text-title-md text-center text-secondary">Endeavor</span>
+</button>
+<!-- Block 7 -->
+<button class="glass-card rounded-lg flex items-center justify-center p-2 neon-glow hover:opacity-80 transition-all duration-200 active:scale-95">
+<span class="font-title-md text-title-md text-center text-on-surface">努力</span>
+</button>
+<!-- Block 8 -->
+<button class="glass-card rounded-lg flex items-center justify-center p-2 neon-glow hover:opacity-80 transition-all duration-200 active:scale-95">
+<span class="font-title-md text-title-md text-center text-on-surface">恢復力</span>
+</button>
+<!-- Block 9 -->
+<button class="glass-card rounded-lg flex items-center justify-center p-2 neon-glow hover:opacity-80 transition-all duration-200 active:scale-95">
+<span class="font-title-md text-title-md text-center text-on-surface">Courage</span>
+</button>
+<!-- Block 10 -->
+<button class="glass-card rounded-lg flex items-center justify-center p-2 neon-glow hover:opacity-80 transition-all duration-200 active:scale-95 opacity-0 invisible">
+<!-- Matched block empty space -->
+</button>
+<!-- Block 11 -->
+<button class="glass-card rounded-lg flex items-center justify-center p-2 neon-glow hover:opacity-80 transition-all duration-200 active:scale-95 opacity-0 invisible">
+<!-- Matched block empty space -->
+</button>
+<!-- Block 12 -->
+<button class="glass-card rounded-lg flex items-center justify-center p-2 neon-glow hover:opacity-80 transition-all duration-200 active:scale-95">
+<span class="font-title-md text-title-md text-center text-on-surface">勇氣</span>
+</button>
+<!-- Block 13 -->
+<button class="glass-card rounded-lg flex items-center justify-center p-2 neon-glow hover:opacity-80 transition-all duration-200 active:scale-95">
+<span class="font-title-md text-title-md text-center text-on-surface">Wisdom</span>
+</button>
+<!-- Block 14 -->
+<button class="glass-card rounded-lg flex items-center justify-center p-2 neon-glow hover:opacity-80 transition-all duration-200 active:scale-95">
+<span class="font-title-md text-title-md text-center text-on-surface">智慧</span>
+</button>
+<!-- Block 15 -->
+<button class="glass-card rounded-lg flex items-center justify-center p-2 neon-glow hover:opacity-80 transition-all duration-200 active:scale-95">
+<span class="font-title-md text-title-md text-center text-on-surface">Patience</span>
+</button>
+<!-- Block 16 -->
+<button class="glass-card rounded-lg flex items-center justify-center p-2 neon-glow hover:opacity-80 transition-all duration-200 active:scale-95">
+<span class="font-title-md text-title-md text-center text-on-surface">耐心</span>
+</button>
+</div>
+<!-- Desktop Controls -->
+<div class="hidden md:flex justify-center gap-md mt-lg w-full">
+<button class="glass-card px-8 py-3 rounded-full flex items-center gap-2 hover:bg-surface-container transition-colors text-primary active:scale-95">
+<span class="material-symbols-outlined">lightbulb</span>
+<span class="font-title-md text-title-md">Hint (3)</span>
+</button>
+<button class="glass-card px-8 py-3 rounded-full flex items-center gap-2 hover:bg-surface-container transition-colors text-on-surface active:scale-95">
+<span class="material-symbols-outlined">pause</span>
+<span class="font-title-md text-title-md">Pause</span>
+</button>
+</div>
+</main>
+<!-- Mobile Bottom Control Bar (Replaces standard BottomNavBar for task focus) -->
+<div class="md:hidden fixed bottom-0 w-full z-50 bg-surface-container/90 backdrop-blur-xl border-t border-white/10 p-margin-mobile pb-safe flex justify-around items-center">
+<button class="flex flex-col items-center justify-center text-primary hover:opacity-80 transition-opacity active:scale-90 gap-1">
+<span class="material-symbols-outlined text-2xl">lightbulb</span>
+<span class="font-label-sm text-label-sm">Hint (3)</span>
+</button>
+<button class="flex items-center justify-center bg-primary text-on-primary rounded-full w-14 h-14 shadow-[0_0_20px_rgba(192,193,255,0.4)] active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-3xl">play_arrow</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:opacity-80 transition-opacity active:scale-90 gap-1">
+<span class="material-symbols-outlined text-2xl">settings</span>
+<span class="font-label-sm text-label-sm">Options</span>
+</button>
+</div>
+</body></html>
